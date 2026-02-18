@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "titulo": "Origen",
+        "anio": 2010,
+        "director": "Christopher Nolan",
+        "duracion": 148,
+        "puntuacion": 8.8,
+        "generos": [
+            "Acción",
+            "Ciencia Ficción",
+            "Aventura"
+        ],
+        "reparto": [
+            "Leonardo DiCaprio",
+            "Joseph Gordon-Levitt",
+            "Elliot Page"
+        ],
+        "sinopsis": "Un ladrón que roba secretos corporativos a través del uso de la tecnología de compartir sueños, se le da la tarea inversa de plantar una idea en la mente de un C.E.O.",
+        "disponibleEnStreaming": true
+    },
+    {
+        "id": 2,
+        "titulo": "El Padrino",
+        "anio": 1972,
+        "director": "Francis Ford Coppola",
+        "duracion": 175,
+        "puntuacion": 9.2,
+        "generos": [
+            "Crimen",
+            "Drama"
+        ],
+        "reparto": [
+            "Marlon Brando",
+            "Al Pacino",
+            "James Caan"
+        ],
+        "sinopsis": "El patriarca envejecido de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su hijo reacio.",
+        "disponibleEnStreaming": false
+    }
+]

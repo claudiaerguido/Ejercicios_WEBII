@@ -1,0 +1,86 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Catálogo de Películas",
+    "description": "Una representación de un catálogo de películas",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "required": [
+            "id",
+            "titulo",
+            "anio",
+            "director",
+            "generos"
+        ],
+        "properties": {
+            "id": {
+                "description": "Identificador único de la película",
+                "type": "integer"
+            },
+            "titulo": {
+                "description": "Título oficial de la película",
+                "type": "string"
+            },
+            "anio": {
+                "description": "Año de lanzamiento",
+                "type": "integer",
+                "minimum": 1888
+            },
+            "director": {
+                "description": "Nombre del director",
+                "type": "string"
+            },
+            "duracion": {
+                "description": "Duración en minutos",
+                "type": "integer",
+                "minimum": 1
+            },
+            "puntuacion": {
+                "description": "Puntuación IMDb (0-10)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+            },
+            "generos": {
+                "description": "Lista de géneros",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "Acción",
+                        "Aventura",
+                        "Animación",
+                        "Comedia",
+                        "Crimen",
+                        "Drama",
+                        "Fantasía",
+                        "Terror",
+                        "Misterio",
+                        "Romance",
+                        "Ciencia Ficción",
+                        "Thriller",
+                        "Western"
+                    ]
+                },
+                "uniqueItems": true
+            },
+            "reparto": {
+                "description": "Actores principales",
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "sinopsis": {
+                "description": "Breve resumen de la trama",
+                "type": "string"
+            },
+            "disponibleEnStreaming": {
+                "description": "Estado de disponibilidad",
+                "type": "boolean",
+                "default": false
+            }
+        }
+    }
+}

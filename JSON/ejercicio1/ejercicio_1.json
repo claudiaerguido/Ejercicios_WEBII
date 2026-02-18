@@ -1,0 +1,13 @@
+{
+  "name": "La Noche Estrellada",
+  "artist": "Vincent van Gogh",
+  "description": "Una de las obras más famosas del postimpresionismo.",
+  "dimension": {
+    "width": 92,
+    "height": 73
+  },
+  "tags": [
+    "oil",
+    "famous"
+  ]
+}
