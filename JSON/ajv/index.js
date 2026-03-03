@@ -2,53 +2,53 @@ const express = require("express");
 const ajv = require("./schemas");
 
 const app = express();
-const PORT = 3000;
+const PUERTO = 3000;
 
-// Middleware para parsear JSON
+// Middleware para que Express pueda leer el cuerpo de las peticiones como JSON
 app.use(express.json());
 
 /**
- * POST /validate/person
+ * POST /validar/persona
  * Valida un JSON contra el schema de persona.
- * - 200: JSON válido
- * - 422: JSON inválido o error
+ * - 200: el JSON es válido
+ * - 422: el JSON no es válido o ha ocurrido algún error
  */
-app.post("/validate/person", (req, res) => {
+app.post("/validar/persona", (req, res) => {
     try {
         const json = req.body;
-        const validate = ajv.getSchema("person");
+        const validar = ajv.getSchema("persona");
 
-        if (validate(json)) {
-            return res.status(200).json({ valid: true, message: "JSON válido según el schema Person" });
+        if (validar(json)) {
+            return res.status(200).json({ valido: true, mensaje: "El JSON es válido según el schema Persona" });
         } else {
-            return res.status(422).json({ valid: false, errors: validate.errors });
+            return res.status(422).json({ valido: false, errores: validar.errors });
         }
     } catch (error) {
-        return res.status(422).json({ valid: false, message: "Error al validar", error: error.message });
+        return res.status(422).json({ valido: false, mensaje: "Error al validar el JSON", error: error.message });
     }
 });
 
 /**
- * POST /validate/coordinate
+ * POST /validar/coordenada
  * Valida un JSON contra el schema de coordenada geográfica.
- * - 200: JSON válido
- * - 422: JSON inválido o error
+ * - 200: el JSON es válido
+ * - 422: el JSON no es válido o ha ocurrido algún error
  */
-app.post("/validate/coordinate", (req, res) => {
+app.post("/validar/coordenada", (req, res) => {
     try {
         const json = req.body;
-        const validate = ajv.getSchema("coordinate");
+        const validar = ajv.getSchema("coordenada");
 
-        if (validate(json)) {
-            return res.status(200).json({ valid: true, message: "JSON válido según el schema Coordinate" });
+        if (validar(json)) {
+            return res.status(200).json({ valido: true, mensaje: "El JSON es válido según el schema Coordenada" });
         } else {
-            return res.status(422).json({ valid: false, errors: validate.errors });
+            return res.status(422).json({ valido: false, errores: validar.errors });
         }
     } catch (error) {
-        return res.status(422).json({ valid: false, message: "Error al validar", error: error.message });
+        return res.status(422).json({ valido: false, mensaje: "Error al validar el JSON", error: error.message });
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+app.listen(PUERTO, () => {
+    console.log(`Servidor escuchando en http://localhost:${PUERTO}`);
 });

@@ -1,19 +1,20 @@
 {
-    "$id": "person.schema.json",
+    "$id": "persona.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Person",
+    "title": "Persona",
+    "description": "Schema para validar los datos de una persona.",
     "type": "object",
     "properties": {
-        "firstName": {
+        "nombre": {
             "type": "string",
-            "description": "The person's first name."
+            "description": "El nombre de la persona."
         },
-        "lastName": {
+        "apellido": {
             "type": "string",
-            "description": "The person's last name."
+            "description": "El apellido de la persona."
         },
-        "age": {
-            "description": "Age in years which must be equal to or greater than zero.",
+        "edad": {
+            "description": "Edad en años. Debe ser igual o mayor que cero.",
             "type": "integer",
             "minimum": 0
         }

@@ -1,20 +1,22 @@
 {
-    "$id": "https://example.com/geographical-location.schema.json",
+    "$id": "https://example.com/coordenada-geografica.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Longitude and Latitude Values",
-    "description": "A geographical coordinate.",
+    "title": "Valores de Longitud y Latitud",
+    "description": "Una coordenada geográfica.",
     "required": [
-        "latitude",
-        "longitude"
+        "latitud",
+        "longitud"
     ],
     "type": "object",
     "properties": {
-        "latitude": {
+        "latitud": {
+            "description": "Latitud de la coordenada. Debe estar entre -90 y 90.",
             "type": "number",
             "minimum": -90,
             "maximum": 90
         },
-        "longitude": {
+        "longitud": {
+            "description": "Longitud de la coordenada. Debe estar entre -180 y 180.",
             "type": "number",
             "minimum": -180,
             "maximum": 180
