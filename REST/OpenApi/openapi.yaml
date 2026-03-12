@@ -1,0 +1,200 @@
+openapi: 3.0.3
+
+info:
+  title: Cine API
+  description: Servicio web REST para consultar y gestionar la cartelera y sesiones de un cine.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+
+# ─── RECURSOS ────────────────────────────────────────────────────────────────
+# Recurso 1: Películas  → /peliculas
+# Recurso 2: Sesiones   → /sesiones
+
+paths:
+
+  # ══════════════════════════════════════════════════════
+  # PELÍCULAS
+  # ══════════════════════════════════════════════════════
+  /peliculas:
+    get:
+      summary: Listar todas las películas de la cartelera
+      responses:
+        '200':
+          description: OK – Lista de películas
+          content:
+            application/json:
+              example:
+                - id: 1
+                  titulo: "Dune: Parte Dos"
+                  genero: Ciencia Ficción
+                  duracion: 166
+                  clasificacion: PG-13
+
+    post:
+      summary: Añadir una nueva película a la cartelera
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              titulo: "Dune: Parte Dos"
+              director: Denis Villeneuve
+              genero: Ciencia Ficción
+              duracion: 166
+              clasificacion: PG-13
+      responses:
+        '201':
+          description: Created – Película añadida correctamente
+        '422':
+          description: Unprocessable Entity – Faltan campos obligatorios
+
+  /peliculas/{id}:
+    get:
+      summary: Obtener el detalle de una película
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK – Datos de la película
+          content:
+            application/json:
+              example:
+                id: 1
+                titulo: "Dune: Parte Dos"
+                director: Denis Villeneuve
+                genero: Ciencia Ficción
+                duracion: 166
+                clasificacion: PG-13
+        '404':
+          description: Not Found – No existe ninguna película con ese id
+
+    put:
+      summary: Actualizar los datos de una película
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              titulo: "Dune: Parte Dos"
+              director: Denis Villeneuve
+              genero: Ciencia Ficción
+              duracion: 166
+              clasificacion: PG-13
+      responses:
+        '200':
+          description: OK – Película actualizada
+        '404':
+          description: Not Found
+
+    delete:
+      summary: Eliminar una película de la cartelera
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content – Película eliminada correctamente
+        '404':
+          description: Not Found – No existe ninguna película con ese id
+
+  # ══════════════════════════════════════════════════════
+  # SESIONES
+  # ══════════════════════════════════════════════════════
+  /sesiones:
+    get:
+      summary: Listar todas las sesiones programadas
+      parameters:
+        - name: fecha
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-03-06"
+      responses:
+        '200':
+          description: OK – Lista de sesiones
+          content:
+            application/json:
+              example:
+                - id: 1
+                  peliculaId: 1
+                  sala: "Sala 1 - IMAX"
+                  fecha: "2026-03-06"
+                  hora: "16:00"
+                  precio: 14.00
+                  asientosDisponibles: 150
+
+    post:
+      summary: Programar una nueva sesión
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              peliculaId: 1
+              sala: "Sala 1 - IMAX"
+              fecha: "2026-03-06"
+              hora: "16:00"
+              precio: 14.00
+      responses:
+        '201':
+          description: Created – Sesión creada correctamente
+        '409':
+          description: Conflict – Ya existe una sesión en esa sala a esa hora
+        '422':
+          description: Unprocessable Entity – Faltan campos obligatorios
+
+  /sesiones/{id}:
+    get:
+      summary: Obtener el detalle de una sesión
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK – Datos de la sesión
+          content:
+            application/json:
+              example:
+                id: 1
+                pelicula: "Dune: Parte Dos"
+                sala: "Sala 1 - IMAX"
+                fecha: "2026-03-06"
+                hora: "16:00"
+                precio: 14.00
+                asientosDisponibles: 150
+        '404':
+          description: Not Found – No existe ninguna sesión con ese id
+
+    delete:
+      summary: Cancelar una sesión
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content – Sesión cancelada correctamente
+        '404':
+          description: Not Found – No existe ninguna sesión con ese id
